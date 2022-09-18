@@ -42,3 +42,7 @@ def test_aln_tree_match_names(alignment: Alignment, tree : Tree):
     have_same_number_of_taxa = len(tree_names) == len(aln_names)
     all_aln_names_in_tree = all([i in aln_names for i in tree_names])
     assert have_same_number_of_taxa and all_aln_names_in_tree
+
+def test_any_internal_branch_lengths_below_threshold(tree: Tree, threshold = 1e-4):
+    branch_lengths_below_threshold = [i.branch_length >= threshold for i in tree.get_nonterminals()[1:]]
+    assert all(branch_lengths_below_threshold)
