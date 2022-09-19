@@ -81,7 +81,7 @@ class Tree(PhytestObject, BioTree):
         warning: bool = False,
     ):
         """
-        Asserts that that the number of tips meets the specified criteria.
+        Asserts that the number of tips meets the specified criteria.
 
         Args:
             tips (int, optional): If set, then number of tips must be equal to this value. Defaults to None.
@@ -150,7 +150,7 @@ class Tree(PhytestObject, BioTree):
         warning: bool = False,
     ):
         """
-        Asserts that that the all brach lengths meet the specified criteria.
+        Asserts that the all brach lengths meet the specified criteria.
 
         Args:
             min (float, optional): If set, then each brach length must be equal to or greater than this value. Defaults to None.
@@ -184,7 +184,7 @@ class Tree(PhytestObject, BioTree):
         warning: bool = False,
     ):
         """
-        Asserts that that the terminal brach lengths meet the specified criteria.
+        Asserts that the terminal brach lengths meet the specified criteria.
 
         Args:
             min (float, optional): If set, then each terminal brach length must be equal to or greater than this value. Defaults to None.
@@ -202,7 +202,7 @@ class Tree(PhytestObject, BioTree):
         warning: bool = False,
     ):
         """
-        Asserts that that the internal brach lengths meet the specified criteria.
+        Asserts that the internal brach lengths meet the specified criteria.
 
         Args:
             min (float, optional): If set, then each internal brach length must be equal to or greater than this value. Defaults to None.
@@ -219,7 +219,7 @@ class Tree(PhytestObject, BioTree):
         warning: bool = False,
     ):
         """
-        Asserts that that there are no negative branches.
+        Asserts that there are no negative branches.
 
         Args:
             terminal (bool, optional): True searches for only terminal nodes, False excludes terminal nodes, and the default, None,
@@ -238,7 +238,7 @@ class Tree(PhytestObject, BioTree):
         warning: bool = False,
     ):
         """
-        Asserts that that the total brach length meets the specified criteria.
+        Asserts that the total brach length meets the specified criteria.
 
         Args:
             length (float, optional): If set, then total brach length must be equal to this value. Defaults to None.
