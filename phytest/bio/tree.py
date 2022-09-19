@@ -1,8 +1,7 @@
 import copy
 import re
 from datetime import datetime
-from io import StringIO, BytesIO
-from pytest_html import extras
+from io import BytesIO, StringIO
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 from warnings import warn
@@ -12,6 +11,7 @@ from Bio.Align import MultipleSeqAlignment
 from Bio.Phylo.BaseTree import Clade
 from Bio.Phylo.BaseTree import Tree as BioTree
 from dateutil.parser import parse
+from pytest_html import extras
 from treetime import GTR, TreeTime
 from treetime.utils import DateConversion, datetime_from_numeric, numeric_date
 
@@ -141,6 +141,93 @@ class Tree(PhytestObject, BioTree):
             f"The group \'{', '.join([tip.name for tip in tips])}\' is paraphyletic!",
         )
 
+    def assert_branch_lengths(
+        self,
+        *,
+        min: Optional[float] = None,
+        max: Optional[float] = None,
+        terminal: Optional[bool] = None,
+        warning: bool = False,
+    ):
+        """
+        Asserts that that the all brach lengths meet the specified criteria.
+
+        Args:
+            min (float, optional): If set, then each brach length must be equal to or greater than this value. Defaults to None.
+            max (float, optional): If set, then each brach length must be equal to or less than this value. Defaults to None.
+            terminal (bool, optional): True searches for only terminal nodes, False excludes terminal nodes, and the default, None,
+                searches both terminal and non-terminal nodes, as well as any tree elements lacking the is_terminal method.
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        root, *nodes = self.find_clades(terminal=terminal)
+        for node in nodes:
+            print(node, node.branch_length)
+            if min is not None:
+                assert_or_warn(
+                    node.branch_length >= min,
+                    warning,
+                    f"An internal branch in the tree is less than the minimum ({min}).",
+                )
+            if max is not None:
+                assert_or_warn(
+                    node.branch_length <= max,
+                    warning,
+                    f"An internal branch in the tree is greater than the maximum ({max}).",
+                )
+
+    def assert_terminal_branch_lengths(
+        self,
+        *,
+        min: Optional[float] = None,
+        max: Optional[float] = None,
+        warning: bool = False,
+    ):
+        """
+        Asserts that that the terminal brach lengths meet the specified criteria.
+
+        Args:
+            min (float, optional): If set, then each terminal brach length must be equal to or greater than this value. Defaults to None.
+            max (float, optional): If set, then each terminal brach length must be equal to or less than this value. Defaults to None.
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        self.assert_branch_lengths(min=min, max=max, terminal=True, warning=warning)
+
+    def assert_internal_branch_lengths(
+        self,
+        *,
+        min: Optional[float] = None,
+        max: Optional[float] = None,
+        warning: bool = False,
+    ):
+        """
+        Asserts that that the internal brach lengths meet the specified criteria.
+
+        Args:
+            min (float, optional): If set, then each internal brach length must be equal to or greater than this value. Defaults to None.
+            max (float, optional): If set, then each internal brach length must be equal to or less than this value. Defaults to None.
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        self.assert_branch_lengths(min=min, max=max, terminal=False, warning=warning)
+
+    def assert_no_negatives(
+        self,
+        *,
+        warning: bool = False,
+    ):
+        """
+        Asserts that that there are no negative branches.
+
+        Args:
+            min (float, optional): If set, then each internal brach length must be equal to or greater than this value. Defaults to None.
+            max (float, optional): If set, then each internal brach length must be equal to or less than this value. Defaults to None.
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        self.assert_branch_lengths(min=0, warning=warning)
+
     def assert_total_branch_length(
         self,
         length: Optional[float] = None,
@@ -170,13 +257,13 @@ class Tree(PhytestObject, BioTree):
             assert_or_warn(
                 total_branch_length >= min,
                 warning,
-                f"The total branch length ({total_branch_length}) is less than the minimum ({length}).",
+                f"The total branch length ({total_branch_length}) is less than the minimum ({min}).",
             )
         if max is not None:
             assert_or_warn(
                 total_branch_length <= max,
                 warning,
-                f"The total branch length ({total_branch_length}) is greater than the maximum ({length}).",
+                f"The total branch length ({total_branch_length}) is greater than the maximum ({max}).",
             )
 
     def assert_tip_regex(
@@ -213,7 +300,7 @@ class Tree(PhytestObject, BioTree):
             )
 
     def copy(self):
-        """ Makes a deep copy of this tree. """
+        """Makes a deep copy of this tree."""
         new_copy = copy.deepcopy(self)
         return new_copy
 
@@ -296,7 +383,7 @@ class Tree(PhytestObject, BioTree):
         self,
         filename: Union[str, Path],
         *,
-        format:Optional[str] = None,
+        format: Optional[str] = None,
         regression: Optional[TreeTime] = None,
         add_internal: bool = False,
         label: bool = True,
@@ -334,7 +421,7 @@ class Tree(PhytestObject, BioTree):
         min_root_date: Optional[float] = None,
         max_root_date: Optional[float] = None,
         valid_confidence: Optional[bool] = None,
-        extra:Optional[List] = None,
+        extra: Optional[List] = None,
         warning: bool = False,
         **kwargs,
     ):
@@ -359,13 +446,13 @@ class Tree(PhytestObject, BioTree):
         regression = regression or self.root_to_tip_regression(**kwargs)
         clock_model = DateConversion.from_regression(regression.clock_model)
         root_date = clock_model.numdate_from_dist2root(0.0)
-        
+
         if extra is not None:
             f = StringIO()
             self.plot_root_to_tip(filename=f, format="svg", regression=regression)
             svg = f.getvalue()
             extra.append(extras.html(svg))
-                
+
         if min_r_squared is not None:
             assert_or_warn(
                 clock_model.r_val**2 >= min_r_squared,

@@ -1,7 +1,8 @@
+import warnings
 from datetime import datetime
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-import warnings
+
 import pytest
 
 from phytest import Tree
@@ -38,6 +39,51 @@ def test_assert_tree_is_monophyletic():
     with pytest.raises(AssertionError):
         tips = [tip for tip in tree.get_terminals() if tip.name in ("Pongo", "H._sapiens")]
         tree.assert_is_monophyletic(tips)
+
+
+def test_assert_branch_lengths():
+    tree = Tree.read_str(
+        "(Bovine:1,(Hylobates:1,(Pongo:1,(G._Gorilla:1, (P._paniscus:1,H._sapiens:1):1):1):1):1, Rodent:1);"
+    )
+    tree.assert_branch_lengths(min=0, max=1)
+    with pytest.raises(AssertionError):
+        tree.assert_branch_lengths(min=2)
+    with pytest.raises(AssertionError):
+        tree.assert_branch_lengths(max=0)
+
+
+def test_assert_no_negative_branch_lengths():
+    tree = Tree.read_str(
+        "(Bovine:1,(Hylobates:1,(Pongo:1,(G._Gorilla:1, (P._paniscus:1,H._sapiens:1):1):1):1):1, Rodent:1);"
+    )
+    tree.assert_no_negatives()
+    tree = Tree.read_str(
+        "(Bovine:1,(Hylobates:1,(Pongo:1,(G._Gorilla:1, (P._paniscus:1,H._sapiens:1):-1):1):1):1, Rodent:1);"
+    )
+    with pytest.raises(AssertionError):
+        tree.assert_no_negatives()
+
+
+def test_assert_terminal_branch_lengths():
+    tree = Tree.read_str(
+        "(Bovine:1,(Hylobates:1,(Pongo:1,(G._Gorilla:1, (P._paniscus:1,H._sapiens:1):1):5):1):1, Rodent:1);"
+    )
+    tree.assert_terminal_branch_lengths(min=0, max=1)
+    with pytest.raises(AssertionError):
+        tree.assert_terminal_branch_lengths(min=2)
+    with pytest.raises(AssertionError):
+        tree.assert_terminal_branch_lengths(max=0)
+
+
+def test_assert_internal_branch_lengths():
+    tree = Tree.read_str(
+        "(Bovine:4,(Hylobates:1,(Pongo:1,(G._Gorilla:1, (P._paniscus:1,H._sapiens:1):2):2):2):2, Rodent:1);"
+    )
+    tree.assert_internal_branch_lengths(min=0, max=2)
+    with pytest.raises(AssertionError):
+        tree.assert_internal_branch_lengths(min=3)
+    with pytest.raises(AssertionError):
+        tree.assert_internal_branch_lengths(max=1)
 
 
 def test_assert_tree_total_branch_length():
@@ -162,5 +208,3 @@ def test_assert_root_to_tip_clock_filter():
     with warnings.catch_warnings():
         warnings.simplefilter("error")
         tree.assert_root_to_tip(clock_filter=3.0)
-
-
