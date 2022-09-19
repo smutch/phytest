@@ -215,18 +215,19 @@ class Tree(PhytestObject, BioTree):
     def assert_no_negatives(
         self,
         *,
+        terminal: Optional[bool] = None,
         warning: bool = False,
     ):
         """
         Asserts that that there are no negative branches.
 
         Args:
-            min (float, optional): If set, then each internal brach length must be equal to or greater than this value. Defaults to None.
-            max (float, optional): If set, then each internal brach length must be equal to or less than this value. Defaults to None.
+            terminal (bool, optional): True searches for only terminal nodes, False excludes terminal nodes, and the default, None,
+                searches both terminal and non-terminal nodes, as well as any tree elements lacking the is_terminal method.
             warning (bool): If True, raise a warning instead of an exception. Defaults to False.
                 This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
         """
-        self.assert_branch_lengths(min=0, warning=warning)
+        self.assert_branch_lengths(min=0, terminal=terminal, warning=warning)
 
     def assert_total_branch_length(
         self,
