@@ -26,7 +26,7 @@
 
 .. |doi badge| image:: https://img.shields.io/badge/DOI-10.21203%2Frs.3.rs1903486%2Fv1-success.svg
     :target: https://www.researchsquare.com/article/rs-1903486/v1
-    
+
 .. end-badges
 
 

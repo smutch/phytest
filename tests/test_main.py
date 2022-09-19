@@ -1,6 +1,9 @@
-from phytest import main
-import pytest
 from unittest.mock import patch
+
+import pytest
+
+from phytest import main
+
 
 def test_main_basic(request: pytest.FixtureRequest):
     result = main(
@@ -11,6 +14,7 @@ def test_main_basic(request: pytest.FixtureRequest):
     )
     assert result.value == 0
 
+
 def test_tree_not_found(request: pytest.FixtureRequest, capsys):
     result = main(
         str(request.path.parent / "input/basic.py"),
@@ -20,7 +24,7 @@ def test_tree_not_found(request: pytest.FixtureRequest, capsys):
     )
     captured = capsys.readouterr()
     assert "FileNotFoundError: Unable to locate requested t" in captured.out
-    assert result.value != 0    
+    assert result.value != 0
 
 
 def test_data_not_found(request: pytest.FixtureRequest, capsys):
@@ -32,7 +36,7 @@ def test_data_not_found(request: pytest.FixtureRequest, capsys):
     )
     captured = capsys.readouterr()
     assert "FileNotFoundError: Unable to locate requested d" in captured.out
-    assert result.value != 0        
+    assert result.value != 0
 
 
 def test_sequence_not_found(request: pytest.FixtureRequest, capsys):
@@ -44,7 +48,7 @@ def test_sequence_not_found(request: pytest.FixtureRequest, capsys):
     )
     captured = capsys.readouterr()
     assert "FileNotFoundError: Unable to locate requested s" in captured.out
-    assert result.value != 0            
+    assert result.value != 0
 
 
 def test_alignment_not_found(capsys):
@@ -54,7 +58,7 @@ def test_alignment_not_found(capsys):
     )
     captured = capsys.readouterr()
     assert "FileNotFoundError: Unable to locate requested al" in captured.out
-    assert result.value != 0                
+    assert result.value != 0
 
 
 @patch.object(pytest, 'main')

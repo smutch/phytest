@@ -49,7 +49,7 @@ def test_cli_basic_expression(request: pytest.FixtureRequest):
             "-d",
             "examples/data/example.csv",
             "-k",
-            "test_tree_number_of_tips"
+            "test_tree_number_of_tips",
         ],
     )
     assert "1 passed" in result.stdout
@@ -124,7 +124,10 @@ def test_cli_invalid_tree_format(request: pytest.FixtureRequest):
             "-v",
         ],
     )
-    assert "Error: Invalid value for '--tree-format': 'excel' is not a valid tree format. Must be one of newick, nexus, phyloxml, nexml." in result.stdout
+    assert (
+        "Error: Invalid value for '--tree-format': 'excel' is not a valid tree format. Must be one of newick, nexus, phyloxml, nexml."
+        in result.stdout
+    )
 
 
 def test_cli_invalid_data_format(request: pytest.FixtureRequest):
@@ -143,7 +146,10 @@ def test_cli_invalid_data_format(request: pytest.FixtureRequest):
             "-v",
         ],
     )
-    assert "Error: Invalid value for '--data-format': 'pdf' is not a valid data format. Must be one of csv, tsv, excel" in result.stdout
+    assert (
+        "Error: Invalid value for '--data-format': 'pdf' is not a valid data format. Must be one of csv, tsv, excel"
+        in result.stdout
+    )
 
 
 def test_cli_invalid_sequence_format(request: pytest.FixtureRequest):
@@ -171,7 +177,7 @@ def test_cli_invalid_data(request: pytest.FixtureRequest):
         [
             str(request.path.parent / "input/basic.py"),
             "-t",
-            "phytest/bio/tree.py", # should not be read
+            "phytest/bio/tree.py",  # should not be read
             "-d",
             "phytest/bio/data.py",
             "-v",
@@ -236,4 +242,3 @@ def test_cli_alignment(request: pytest.FixtureRequest):
         ],
     )
     assert "1 passed" in result.stdout
-
