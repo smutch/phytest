@@ -481,13 +481,13 @@ This flag can be set by running this method with the prefix <cite>warn_</cite> i
 
 <dl class="py method">
 <dt class="sig sig-object py" id="phytest.bio.tree.Tree.assert_no_negatives">
-<span class="sig-name descname"><span class="pre">assert_no_negatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warning</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#phytest.bio.tree.Tree.assert_no_negatives" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">assert_no_negatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warning</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#phytest.bio.tree.Tree.assert_no_negatives" title="Permalink to this definition"></a></dt>
 <dd><p>Asserts that that there are no negative branches.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>min</strong> (<em>float</em><em>, </em><em>optional</em>) – If set, then each internal brach length must be equal to or greater than this value. Defaults to None.</p></li>
-<li><p><strong>max</strong> (<em>float</em><em>, </em><em>optional</em>) – If set, then each internal brach length must be equal to or less than this value. Defaults to None.</p></li>
+<li><p><strong>terminal</strong> (<em>bool</em><em>, </em><em>optional</em>) – True searches for only terminal nodes, False excludes terminal nodes, and the default, None,
+searches both terminal and non-terminal nodes, as well as any tree elements lacking the is_terminal method.</p></li>
 <li><p><strong>warning</strong> (<em>bool</em>) – If True, raise a warning instead of an exception. Defaults to False.
 This flag can be set by running this method with the prefix <cite>warn_</cite> instead of <cite>assert_</cite>.</p></li>
 </ul>
