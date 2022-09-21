@@ -1,12 +1,4 @@
-import warnings
-from datetime import datetime
-from pathlib import Path
-from tempfile import NamedTemporaryFile
-
-import pytest
-
 from phytest import Alignment, Sequence, Tree
-from phytest.utils import PhytestAssertion, PhytestWarning, default_date_patterns
 
 
 def test_alignment_has_4_sequences(alignment: Alignment):
@@ -38,13 +30,20 @@ def test_tree_is_bifurcating(tree: Tree):
 
 
 def test_aln_tree_match_names(alignment: Alignment, tree: Tree):
-    tree_names = [i.name for i in tree.get_terminals()]
     aln_names = [i.name for i in alignment]
-    have_same_number_of_taxa = len(tree_names) == len(aln_names)
-    all_aln_names_in_tree = all([i in aln_names for i in tree_names])
-    assert have_same_number_of_taxa and all_aln_names_in_tree
+    tree.assert_tips_names(aln_names)
 
 
-def test_any_internal_branch_lengths_below_threshold(tree: Tree, threshold=1e-4):
-    branch_lengths_below_threshold = [i.branch_length >= threshold for i in tree.get_nonterminals()[1:]]
-    assert all(branch_lengths_below_threshold)
+def test_any_internal_branch_lengths_above_threshold(tree: Tree, threshold=1e-4):
+    tree.assert_internal_branch_lengths(min=threshold)
+
+
+def test_outlier_branches(tree: Tree):
+    # Here we create a custom function to detect outliers
+    import statistics
+
+    tips = tree.get_terminals()
+    branch_lengths = [t.branch_length for t in tips]
+    cut_off = statistics.mean(branch_lengths) + statistics.stdev(branch_lengths)
+    for tip in tips:
+        assert tip.branch_length < cut_off, f"Outlier tip '{tip.name}' (branch length = {tip.branch_length})!"

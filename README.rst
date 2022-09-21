@@ -92,7 +92,9 @@ We want to enforce the follow constraints on our data:
     5. The longest stretch of Ns is 10
     6. The tree has 4 tips
     7. The tree is bifurcating
-    8. There are no outlier branches in the tree
+    8. The alignment and tree have the same names
+    9. All internal branches are longer than the given threshold
+    10. There are no outlier branches in the tree
 
 We can write these tests in a python files :code:`example.py`
 
@@ -129,6 +131,15 @@ We can write these tests in a python files :code:`example.py`
         tree.assert_is_bifurcating()
 
 
+    def test_aln_tree_match_names(alignment: Alignment, tree: Tree):
+        aln_names = [i.name for i in alignment]
+        tree.assert_tips_names(aln_names)
+
+
+    def test_all_internal_branches_lengths_above_threshold(tree: Tree, threshold=1e-4):
+        tree.assert_internal_branch_lengths(min=threshold)
+
+
     def test_outlier_branches(tree: Tree):
         # Here we create a custom function to detect outliers
         import statistics
@@ -163,7 +174,7 @@ From the output we can see several tests failed:
     FAILED examples/example.py::test_outlier_branches - AssertionError: Outlier tip 'Sequence_A' (branch length = 1.0)!
 
     Results (0.07s):
-        13 passed
+        15 passed
         4 failed
             - examples/example.py:12 test_sequences_only_contains_the_characters[Sequence_B]
             - examples/example.py:16 test_single_base_deletions[Sequence_C]
