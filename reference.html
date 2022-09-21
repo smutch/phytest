@@ -554,6 +554,21 @@ This flag can be set by running this method with the prefix <cite>warn_</cite> i
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="phytest.bio.tree.Tree.assert_tip_names">
+<span class="sig-name descname"><span class="pre">assert_tip_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#phytest.bio.tree.Tree.assert_tip_names" title="Permalink to this definition"></a></dt>
+<dd><p>Asserts that the tree tip names match the supplied names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The names to match.</p></li>
+<li><p><strong>warning</strong> (<em>bool</em>) – If True, raise a warning instead of an exception. Defaults to False.
+This flag can be set by running this method with the prefix <cite>warn_</cite> instead of <cite>assert_</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="phytest.bio.tree.Tree.assert_tip_regex">
 <span class="sig-name descname"><span class="pre">assert_tip_regex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patterns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warning</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#phytest.bio.tree.Tree.assert_tip_regex" title="Permalink to this definition"></a></dt>
 <dd><p>Asserts that all the tips match at least one of a list of regular expression patterns.</p>
@@ -563,21 +578,6 @@ This flag can be set by running this method with the prefix <cite>warn_</cite> i
 <li><p><strong>patterns</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>str</em><em>]</em>) – The regex pattern(s) to match to.
 If a string, then every tip must match that pattern.
 If a list then each tip must match at least one pattern in the list.</p></li>
-<li><p><strong>warning</strong> (<em>bool</em>) – If True, raise a warning instead of an exception. Defaults to False.
-This flag can be set by running this method with the prefix <cite>warn_</cite> instead of <cite>assert_</cite>.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="phytest.bio.tree.Tree.assert_tips_names">
-<span class="sig-name descname"><span class="pre">assert_tips_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#phytest.bio.tree.Tree.assert_tips_names" title="Permalink to this definition"></a></dt>
-<dd><p>Asserts that the tree tip names match the supplied names.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The names to match.</p></li>
 <li><p><strong>warning</strong> (<em>bool</em>) – If True, raise a warning instead of an exception. Defaults to False.
 This flag can be set by running this method with the prefix <cite>warn_</cite> instead of <cite>assert_</cite>.</p></li>
 </ul>

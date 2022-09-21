@@ -189,7 +189,7 @@ ATGAGATCCCCGATAGCGAGCTAGCGATNNNNNNNNNNNNNNNNNTACAGCGCAGAGGAGAGAGAGGCCCCTATTTACTA
 
 <span class="k">def</span> <span class="nf">test_aln_tree_match_names</span><span class="p">(</span><span class="n">alignment</span><span class="p">:</span> <span class="n">Alignment</span><span class="p">,</span> <span class="n">tree</span><span class="p">:</span> <span class="n">Tree</span><span class="p">):</span>
     <span class="n">aln_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alignment</span><span class="p">]</span>
-    <span class="n">tree</span><span class="o">.</span><span class="n">assert_tips_names</span><span class="p">(</span><span class="n">aln_names</span><span class="p">)</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">assert_tip_names</span><span class="p">(</span><span class="n">aln_names</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">test_all_internal_branches_lengths_above_threshold</span><span class="p">(</span><span class="n">tree</span><span class="p">:</span> <span class="n">Tree</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
