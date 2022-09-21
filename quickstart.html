@@ -149,6 +149,8 @@ ATGAGATCCCCGATAGCGAGCTAGCGATNNNNNNNNNNNNNNNNNTACAGCGCAGAGGAGAGAGAGGCCCCTATTTACTA
 <li><p>The longest stretch of Ns is 10</p></li>
 <li><p>The tree has 4 tips</p></li>
 <li><p>The tree is bifurcating</p></li>
+<li><p>The alignment and tree have the same names</p></li>
+<li><p>All internal branches are longer than the given threshold</p></li>
 <li><p>There are no outlier branches in the tree</p></li>
 </ol>
 </dd>
@@ -185,6 +187,15 @@ ATGAGATCCCCGATAGCGAGCTAGCGATNNNNNNNNNNNNNNNNNTACAGCGCAGAGGAGAGAGAGGCCCCTATTTACTA
     <span class="n">tree</span><span class="o">.</span><span class="n">assert_is_bifurcating</span><span class="p">()</span>
 
 
+<span class="k">def</span> <span class="nf">test_aln_tree_match_names</span><span class="p">(</span><span class="n">alignment</span><span class="p">:</span> <span class="n">Alignment</span><span class="p">,</span> <span class="n">tree</span><span class="p">:</span> <span class="n">Tree</span><span class="p">):</span>
+    <span class="n">aln_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alignment</span><span class="p">]</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">assert_tips_names</span><span class="p">(</span><span class="n">aln_names</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_all_internal_branches_lengths_above_threshold</span><span class="p">(</span><span class="n">tree</span><span class="p">:</span> <span class="n">Tree</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">assert_internal_branch_lengths</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+
+
 <span class="k">def</span> <span class="nf">test_outlier_branches</span><span class="p">(</span><span class="n">tree</span><span class="p">:</span> <span class="n">Tree</span><span class="p">):</span>
     <span class="c1"># Here we create a custom function to detect outliers</span>
     <span class="kn">import</span> <span class="nn">statistics</span>
@@ -212,7 +223,7 @@ FAILED examples/example.py::test_longest_stretch_of_Ns_is_10[Sequence_D] - Asser
 FAILED examples/example.py::test_outlier_branches - AssertionError: Outlier tip &#39;Sequence_A&#39; (branch length = 1.0)!
 
 Results (0.07s):
-    13 passed
+    15 passed
     4 failed
         - examples/example.py:12 test_sequences_only_contains_the_characters[Sequence_B]
         - examples/example.py:16 test_single_base_deletions[Sequence_C]
