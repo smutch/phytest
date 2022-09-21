@@ -116,13 +116,13 @@ def test_assert_tip_names():
     tree = Tree.read_str(
         "(Bovine:1,(Hylobates:1,(Pongo:1,(G._Gorilla:1, (P._paniscus:1,H._sapiens:1):1):1):1):1, Rodent:1);"
     )
-    tree.assert_tips_names(names=['Bovine', 'Hylobates', 'Pongo', 'G._Gorilla', 'P._paniscus', 'H._sapiens', 'Rodent'])
+    tree.assert_tip_names(names=['Bovine', 'Hylobates', 'Pongo', 'G._Gorilla', 'P._paniscus', 'H._sapiens', 'Rodent'])
     with pytest.raises(AssertionError):
-        tree.assert_tips_names(
+        tree.assert_tip_names(
             names=['Bovine', 'Bovine', 'Hylobates', 'Pongo', 'G._Gorilla', 'P._paniscus', 'H._sapiens', 'Rodent']
         )
     with pytest.raises(AssertionError):
-        tree.assert_tips_names(
+        tree.assert_tip_names(
             names=['Different', 'Hylobates', 'Pongo', 'G._Gorilla', 'P._paniscus', 'H._sapiens', 'Rodent']
         )
 

@@ -133,7 +133,7 @@ We can write these tests in a python files :code:`example.py`
 
     def test_aln_tree_match_names(alignment: Alignment, tree: Tree):
         aln_names = [i.name for i in alignment]
-        tree.assert_tips_names(aln_names)
+        tree.assert_tip_names(aln_names)
 
 
     def test_all_internal_branches_lengths_above_threshold(tree: Tree, threshold=1e-4):
