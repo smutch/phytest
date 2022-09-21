@@ -1,5 +1,6 @@
 import copy
 import re
+import unittest
 from datetime import datetime
 from io import BytesIO, StringIO
 from pathlib import Path
@@ -299,6 +300,28 @@ class Tree(PhytestObject, BioTree):
                 warning,
                 f"Tip {tip.name} does not match any of the regex patterns in: '{patterns}'.",
             )
+
+    def assert_tips_names(self, names: List[str], warning=False):
+        """
+        Asserts that the tree tip names match the supplied names.
+
+        Args:
+            names (List[str]): The names to match.
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        tips_names = [t.name for t in self.get_terminals()]
+        assert_or_warn(
+            len(tips_names) == len(names),
+            warning,
+            f"The tree contains {len(tips_names)} tips, however, {len(names)} names were supplied.",
+        )
+        diff = set(tips_names).difference(names)
+        assert_or_warn(
+            diff == set(),
+            warning,
+            f"There was a difference ({', '.join(diff)}) between the supplied names and tree tip names.",
+        )
 
     def copy(self):
         """Makes a deep copy of this tree."""
