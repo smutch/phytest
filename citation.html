@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Development &mdash; phytest 0.1.0 documentation</title>
+  <title>Citation &mdash; phytest 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -23,8 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Citation" href="citation.html" />
-    <link rel="prev" title="API Reference" href="reference.html" /> 
+    <link rel="prev" title="Development" href="development.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,8 +49,8 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Running Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Citation</a></li>
 </ul>
 
         </div>
@@ -68,9 +67,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Development</li>
+      <li>Citation</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/phytest-devs/phytest/blob/main/docs/development.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/phytest-devs/phytest/blob/main/docs/citation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -102,19 +101,24 @@
     text-align: unset;
 }
 </style>
-<section id="development">
-<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline"></a></h1>
-<p>Install poetry (<a class="reference external" href="https://python-poetry.org/">https://python-poetry.org/</a>)</p>
-<p>Clone the repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/phytest-devs/phytest.git <span class="o">&amp;&amp;</span> <span class="nb">cd</span> phytest
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry install
-poetry shell
-</pre></div>
-</div>
-<p>Test the code with pytest:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+<section id="citation">
+<h1>Citation<a class="headerlink" href="#citation" title="Permalink to this headline"></a></h1>
+<p>If you use phytest, please cite the following paper:</p>
+<p>Wytamma Wirth, Simon Mutch, Robert Turnbull, Sebastian Duchene, Phytest: quality control for phylogenetic analyses, Bioinformatics, Volume 38, Issue 22, 15 November 2022, Pages 5124–5125, <a class="reference external" href="https://doi.org/10.1093/bioinformatics/btac664">https://doi.org/10.1093/bioinformatics/btac664</a></p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">10.1093/bioinformatics/btac664</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Wirth, Wytamma and Mutch, Simon and Turnbull, Robert and Duchene, Sebastian}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;{{Phytest: quality control for phylogenetic analyses}}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">journal</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Bioinformatics}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">volume</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{38}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{22}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{5124-5125}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2022}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">month</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">issn</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{1367-4803}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10.1093/bioinformatics/btac664}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://doi.org/10.1093/bioinformatics/btac664}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="na">eprint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://academic.oup.com/bioinformatics/article-pdf/38/22/5124/47153886/btac664.pdf}</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -123,8 +127,7 @@ poetry shell
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="reference.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="citation.html" class="btn btn-neutral float-right" title="Citation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="development.html" class="btn btn-neutral float-left" title="Development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

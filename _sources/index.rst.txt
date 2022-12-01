@@ -36,6 +36,7 @@ Code: https://github.com/phytest-devs/phytest
    examples
    reference
    development
+   citation
 
 Indices and tables
 ==================
