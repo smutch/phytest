@@ -181,6 +181,38 @@ From the output we can see several tests failed:
             - examples/example.py:20 test_longest_stretch_of_Ns_is_10[Sequence_D]
             - examples/example.py:32 test_outlier_branches
 
+
+
 .. end-quickstart
 
 See docs for more information https://phytest-devs.github.io/phytest.
+
+Citation
+============
+
+.. start-citation
+
+If you use phytest, please cite the following paper:
+
+Wytamma Wirth, Simon Mutch, Robert Turnbull, Sebastian Duchene, Phytest: quality control for phylogenetic analyses, Bioinformatics, Volume 38, Issue 22, 15 November 2022, Pages 5124–5125, https://doi.org/10.1093/bioinformatics/btac664
+
+
+.. code-block:: bibtex
+
+    @article{10.1093/bioinformatics/btac664,
+        author = {Wirth, Wytamma and Mutch, Simon and Turnbull, Robert and Duchene, Sebastian},
+        title = "{{Phytest: quality control for phylogenetic analyses}}",
+        journal = {Bioinformatics},
+        volume = {38},
+        number = {22},
+        pages = {5124-5125},
+        year = {2022},
+        month = {10},
+        issn = {1367-4803},
+        doi = {10.1093/bioinformatics/btac664},
+        url = {https://doi.org/10.1093/bioinformatics/btac664},
+        eprint = {https://academic.oup.com/bioinformatics/article-pdf/38/22/5124/47153886/btac664.pdf},
+    }
+
+
+.. end-citation
