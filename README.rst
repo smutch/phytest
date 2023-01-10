@@ -24,8 +24,8 @@
 .. |pre-commit badge| image:: https://results.pre-commit.ci/badge/github/phytest-devs/phytest/main.svg
     :target: https://results.pre-commit.ci/latest/github/phytest-devs/phytest/main
 
-.. |doi badge| image:: https://img.shields.io/badge/DOI-10.21203%2Frs.3.rs1903486%2Fv1-success.svg
-    :target: https://www.researchsquare.com/article/rs-1903486/v1
+.. |doi badge| image:: https://img.shields.io/badge/DOI-10.1093%2Fbioinformatics%2Fbtac664-success.svg
+    :target: https://academic.oup.com/bioinformatics/article/38/22/5124/6751773
 
 .. end-badges
 
