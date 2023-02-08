@@ -21,6 +21,7 @@ biopython = "^1.79"
 phylo-treetime = "^0.8.6"
 scipy = "^1.8.0"
 numpy = "^1.22.3"
+pytest-xdist = "^3.2.0"
 
 [tool.poetry.dev-dependencies]
 coverage = "^5.5"

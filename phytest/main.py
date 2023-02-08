@@ -16,7 +16,8 @@ def main(
     data_format: Optional[str] = 'csv',
     verbose: bool = False,
     report: Optional[Path] = None,
-    expression: str = None,
+    expression: Optional[str] = None,
+    cores: Optional[str] = None,
 ):
     if not testfile:
         testfile = Path(os.path.abspath((inspect.stack()[1])[1]))
@@ -42,5 +43,8 @@ def main(
         # only run tests which match the given substring expression
         # see the pytest help
         args.extend(["-k", expression])
+    if cores:
+        # parallel with pytest-xdist
+        args.extend(["-n", cores])
     exit_code = pytest.main(args, plugins=['phytest'])
     return exit_code

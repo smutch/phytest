@@ -35,7 +35,7 @@ def data_format_callback(value: str):
     return value
 
 
-@app.command()
+@app.command(context_settings={"help_option_names": ["-h", "--help"]})
 def cli(
     testfile: Path = typer.Argument(..., help="Path to test file."),
     sequence: Optional[Path] = typer.Option(
@@ -69,6 +69,11 @@ def cli(
     expression: Optional[str] = typer.Option(
         None, "-k", help="Only run tests which match the given substring expression."
     ),
+    cores: Optional[str] = typer.Option(
+        None,
+        "-n",
+        help="Number of cores. Use 'auto' to spawn a number of workers processes equal to the number of available CPUs.",
+    ),
 ):
     exit_code = main(
         testfile=testfile,
@@ -81,5 +86,6 @@ def cli(
         verbose=verbose,
         report=report,
         expression=expression,
+        cores=cores,
     )
     raise typer.Exit(code=exit_code)

@@ -56,6 +56,24 @@ def test_cli_basic_expression(request: pytest.FixtureRequest):
     assert "6 deselected" in result.stdout
 
 
+def test_cli_parallel(request: pytest.FixtureRequest):
+    result = runner.invoke(
+        app,
+        [
+            str(request.path.parent / "input/basic.py"),
+            "-s",
+            "examples/data/example.fasta",
+            "-t",
+            "examples/data/example.tree",
+            "-d",
+            "examples/data/example.csv",
+            "-n",
+            "2",
+        ],
+    )
+    assert "gw1" in result.stdout
+
+
 def test_cli_report(request: pytest.FixtureRequest):
     result = runner.invoke(
         app,
