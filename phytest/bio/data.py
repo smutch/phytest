@@ -72,7 +72,7 @@ class Data(PhytestObject, DataFrame):
             f"The row(s) '{not_matched}' of the column '{column}' do not match the pattern '{pattern}'.",
         )
 
-    def assert_allowed_columns(
+    def assert_columns(
         self,
         allowed_columns: List[str],
         *,
@@ -98,10 +98,10 @@ class Data(PhytestObject, DataFrame):
             message = f"The columns '{not_allowed}' are not in the list of allowed columns '{allowed_columns}'."
         assert_or_warn(len(not_allowed) == 0, warning, summary, message)
 
-    def assert_allowed_values(
+    def assert_values(
         self,
         column: str,
-        allowed_values: list,
+        values: list,
         *,
         allow_nan: bool = False,
         exact: bool = False,
@@ -112,18 +112,21 @@ class Data(PhytestObject, DataFrame):
 
         Args:
             column (str, required): The column to check.
-            allowed_values (list, required): The list of allowed values.
+            values (list, required): The list of allowed values.
             warning (bool): If True, raise a warning instead of an exception. Defaults to False.
                 This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
         """
+
         column_values = self[column].values
         summary = f"The values of column '{column}' are '{column_values}'."
         if allow_nan:
-            allowed_values.append(float('nan'))
+            values.append(float('nan'))
         if exact:
-            not_allowed = list(set(allowed_values).symmetric_difference(set(column_values)))
-            message = f"The values column '{column}' do not exactly match the allowed values '{allowed_values}'"
+            not_allowed = list(set(values).symmetric_difference(set(column_values)))
+            message = f"The values column '{column}' do not exactly match the allowed values '{values}'"
         else:
-            not_allowed = self[~self[column].isin(allowed_values)].index.values
-            message = f"The row(s) '{not_allowed}' of the column '{column}' are not in the list of allowed values '{allowed_values}'."
+            not_allowed = self[~self[column].isin(values)].index.values
+            message = (
+                f"The row(s) '{not_allowed}' of the column '{column}' are not in the list of allowed values '{values}'."
+            )
         assert_or_warn(len(not_allowed) == 0, warning, summary, message)

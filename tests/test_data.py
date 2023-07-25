@@ -50,47 +50,45 @@ def test_assert_data_match():
 def test_assert_data_allowed_columns():
     data_path = 'examples/data/example.csv'
     data = Data.read(data_path, 'csv')
-    data.assert_allowed_columns(['name', 'date', 'sequence'])
+    data.assert_columns(['name', 'date', 'sequence'])
     with pytest.raises(
         PhytestAssertion,
         match=re.escape("The columns '['date']' are not in the list of allowed columns '['name', 'sequence']'."),
     ):
-        data.assert_allowed_columns(['name', 'sequence'])
+        data.assert_columns(['name', 'sequence'])
     with pytest.raises(
         PhytestAssertion,
         match=re.escape("The column names do not exactly match the list of allowed columns"),
     ):
-        data.assert_allowed_columns(['name', 'date', 'sequence'], exact=True)
+        data.assert_columns(['name', 'date', 'sequence'], exact=True)
 
 
 def test_assert_data_allowed_values():
     data_path = 'examples/data/example.csv'
     data = Data.read(data_path, 'csv')
-    data.assert_allowed_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C', 'Sequence_D', 'Sequence_E'])
+    data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C', 'Sequence_D', 'Sequence_E'])
     with pytest.raises(
         PhytestAssertion,
         match=re.escape(
             "The row(s) '[3]' of the column 'name' are not in the list of allowed values '['Sequence_A', 'Sequence_B', 'Sequence_C']"
         ),
     ):
-        data.assert_allowed_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'])
+        data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'])
 
     # exact
     with pytest.raises(
         PhytestAssertion,
         match=re.escape("The values column 'name' do not exactly match the allowed values"),
     ):
-        data.assert_allowed_values(
-            'name', ['Sequence_A', 'Sequence_B', 'Sequence_C', 'Sequence_D', 'Sequence_E'], exact=True
-        )
+        data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C', 'Sequence_D', 'Sequence_E'], exact=True)
 
     # allow nan
     data.replace('Sequence_D', float('nan'), inplace=True)
-    data.assert_allowed_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'], allow_nan=True)
+    data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'], allow_nan=True)
     with pytest.raises(
         PhytestAssertion,
         match=re.escape(
             "The row(s) '[3]' of the column 'name' are not in the list of allowed values '['Sequence_A', 'Sequence_B', 'Sequence_C']'."
         ),
     ):
-        data.assert_allowed_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'])
+        data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'])
