@@ -22,6 +22,18 @@ def test_assert_tree_number_of_tips():
         tree.assert_number_of_tips(max=6)
 
 
+def test_assert_unique_tips():
+    tree = Tree.read_str(
+        "(Bovine:0.69395,(Hylobates:0.36079,(Pongo:0.33636,(G._Gorilla:0.17147, (P._paniscus:0.19268,H._sapiens:0.11927):0.08386):0.06124):0.15057):0.54939, Rodent:1.21460);"
+    )
+    tree.assert_unique_tips()
+    tree = Tree.read_str(
+        "(Bovine:0.69395,(Hylobates:0.36079,(Pongo:0.33636,(G._Gorilla:0.17147, (P._paniscus:0.19268,H._sapiens:0.11927):0.08386):0.06124):0.15057):0.54939, Bovine:1.21460);"
+    )
+    with pytest.raises(AssertionError):
+        tree.assert_unique_tips()
+
+
 def test_assert_tree_is_rooted():
     tree = Tree.read_str("((A:0.1,B:0.2):0.3,(C:0.3,D:0.4):0.5);")
     with pytest.raises(AssertionError):
