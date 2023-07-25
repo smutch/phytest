@@ -45,3 +45,67 @@ def test_assert_data_match():
         ),
     ):
         data.assert_match('name', 'Sequence_[A-C]')
+
+
+def test_assert_data_allowed_columns():
+    data_path = 'examples/data/example.csv'
+    data = Data.read(data_path, 'csv')
+    data.assert_columns(['name', 'date', 'sequence'])
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape("The columns '['date']' are not in the list of allowed columns '['name', 'sequence']'."),
+    ):
+        data.assert_columns(['name', 'sequence'])
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape("The column names do not exactly match the list of allowed columns"),
+    ):
+        data.assert_columns(['name', 'date', 'sequence'], exact=True)
+
+
+def test_assert_data_allowed_values():
+    data_path = 'examples/data/example.csv'
+    data = Data.read(data_path, 'csv')
+    data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C', 'Sequence_D', 'Sequence_E'])
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape(
+            "The row(s) '[3]' of the column 'name' are not in the list of allowed values '['Sequence_A', 'Sequence_B', 'Sequence_C']"
+        ),
+    ):
+        data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'])
+
+    # exact
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape("The values column 'name' do not exactly match the allowed values"),
+    ):
+        data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C', 'Sequence_D', 'Sequence_E'], exact=True)
+
+    # allow nan
+    data.replace('Sequence_D', float('nan'), inplace=True)
+    data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'], allow_nan=True)
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape(
+            "The row(s) '[3]' of the column 'name' are not in the list of allowed values '['Sequence_A', 'Sequence_B', 'Sequence_C']'."
+        ),
+    ):
+        data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'])
+
+
+def test_assert_range():
+    data_path = 'examples/data/example.csv'
+    data = Data.read(data_path, 'csv')
+    data['value'] = [1, 2, 3, 4]
+    data.assert_range('value', min=1, max=5)
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape("The maximum value of column 'value' is '4', which is greater than '3'."),
+    ):
+        data.assert_range('value', max=3)
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape("The minimum value of column 'value' is '1', which is less than '2'."),
+    ):
+        data.assert_range('value', min=2)

@@ -41,6 +41,10 @@ class Tree(PhytestObject, BioTree):
         data = StringIO(tree_str)
         return cls.read(data, tree_format)
 
+    @property
+    def tips(self):
+        return self.get_terminals()
+
     def parse_tip_dates(
         self,
         *,
@@ -111,6 +115,36 @@ class Tree(PhytestObject, BioTree):
                 f"The number of tips ({number_of_tips}) is greater than the maximum ({max}).",
             )
 
+    def assert_unique_tips(self, *, warning: bool = False):
+        """
+        Asserts that all the tip names are unique.
+
+        Args:
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+
+        """
+        tip_names = [t.name for t in self.get_terminals()]
+        assert_or_warn(
+            len(tip_names) == len(set(tip_names)),
+            warning,
+            f"The tree contains {len(tip_names)} tips, however, {len(set(tip_names))} are unique.",
+        )
+
+    def assert_is_rooted(self, *, warning: bool = False):
+        """
+        Asserts that the tree is rooted.
+
+        Args:
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        assert_or_warn(
+            self.rooted,
+            warning,
+            "The tree is not rooted.",
+        )
+
     def assert_is_bifurcating(self, *, warning: bool = False):
         """
         Asserts that the tree is bifurcating.
@@ -124,7 +158,7 @@ class Tree(PhytestObject, BioTree):
         assert_or_warn(
             self.is_bifurcating(),
             warning,
-            f"The tree is not bifurcating.",
+            "The tree is not bifurcating.",
         )
 
     def assert_is_monophyletic(self, tips: List[Clade], *, warning: bool = False):
