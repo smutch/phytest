@@ -111,6 +111,20 @@ class Tree(PhytestObject, BioTree):
                 f"The number of tips ({number_of_tips}) is greater than the maximum ({max}).",
             )
 
+    def assert_is_rooted(self, *, warning: bool = False):
+        """
+        Asserts that the tree is rooted.
+
+        Args:
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        assert_or_warn(
+            self.rooted,
+            warning,
+            "The tree is not rooted.",
+        )
+
     def assert_is_bifurcating(self, *, warning: bool = False):
         """
         Asserts that the tree is bifurcating.
@@ -124,7 +138,7 @@ class Tree(PhytestObject, BioTree):
         assert_or_warn(
             self.is_bifurcating(),
             warning,
-            f"The tree is not bifurcating.",
+            "The tree is not bifurcating.",
         )
 
     def assert_is_monophyletic(self, tips: List[Clade], *, warning: bool = False):
