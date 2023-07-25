@@ -1,4 +1,5 @@
 import re
+from typing import List, Union
 
 import pandas as pd
 from pandas import DataFrame
@@ -70,3 +71,59 @@ class Data(PhytestObject, DataFrame):
             summary,
             f"The row(s) '{not_matched}' of the column '{column}' do not match the pattern '{pattern}'.",
         )
+
+    def assert_allowed_columns(
+        self,
+        allowed_columns: List[str],
+        *,
+        exact: bool = False,
+        warning: bool = False,
+    ) -> None:
+        """
+        Asserts that the specified column(s) are in the DataFrame.
+
+        Args:
+            allowed_columns (List[str], required): The list of allowed columns.
+            exact (bool): If True, the list of allowed columns must be exactly the same as the list of columns in the DataFrame.
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        columns = self.columns.values
+        summary = f"The names of the columns are '{columns}'."
+        if exact:
+            not_allowed = list(set(allowed_columns).symmetric_difference(set(columns)))
+            message = f"The column names do not exactly match the list of allowed columns '{allowed_columns}'."
+        else:
+            not_allowed = [column for column in columns if column not in allowed_columns]
+            message = f"The columns '{not_allowed}' are not in the list of allowed columns '{allowed_columns}'."
+        assert_or_warn(len(not_allowed) == 0, warning, summary, message)
+
+    def assert_allowed_values(
+        self,
+        column: str,
+        allowed_values: list,
+        *,
+        allow_nan: bool = False,
+        exact: bool = False,
+        warning: bool = False,
+    ) -> None:
+        """
+        Asserts that all values of the specified column are in the specified list of allowed values.
+
+        Args:
+            column (str, required): The column to check.
+            allowed_values (list, required): The list of allowed values.
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        column_values = self[column].values
+        summary = f"The values of column '{column}' are '{column_values}'."
+        if allow_nan:
+            allowed_values.append(float('nan'))
+        if exact:
+            not_allowed = list(set(allowed_values).symmetric_difference(set(column_values)))
+            message = f"The values column '{column}' do not exactly match the allowed values '{allowed_values}'"
+        else:
+            not_allowed = self[~self[column].isin(allowed_values)].index.values
+            message = f"The row(s) '{not_allowed}' of the column '{column}' are not in the list of allowed values '{allowed_values}'."
+        assert_or_warn(len(not_allowed) == 0, warning, summary, message)
