@@ -41,6 +41,10 @@ class Tree(PhytestObject, BioTree):
         data = StringIO(tree_str)
         return cls.read(data, tree_format)
 
+    @property
+    def tips(self):
+        return self.get_terminals()
+
     def parse_tip_dates(
         self,
         *,

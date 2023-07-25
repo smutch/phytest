@@ -9,6 +9,11 @@ from phytest import Tree
 from phytest.utils import PhytestAssertion, PhytestWarning, default_date_patterns
 
 
+def test_tips_property():
+    tree = Tree.read_str("(A:0.1,B:0.2);")
+    assert [t.name for t in tree.tips] == ['A', 'B']
+
+
 def test_assert_tree_number_of_tips():
     tree = Tree.read_str(
         "(Bovine:0.69395,(Hylobates:0.36079,(Pongo:0.33636,(G._Gorilla:0.17147, (P._paniscus:0.19268,H._sapiens:0.11927):0.08386):0.06124):0.15057):0.54939, Rodent:1.21460);"
