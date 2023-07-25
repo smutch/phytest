@@ -113,6 +113,8 @@ class Data(PhytestObject, DataFrame):
         Args:
             column (str, required): The column to check.
             values (list, required): The list of allowed values.
+            allow_nan (bool): If True, allow NaN values.
+            exact (bool): If True, the list of allowed values must be exactly the same as the list of values in the DataFrame.
             warning (bool): If True, raise a warning instead of an exception. Defaults to False.
                 This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
         """
@@ -130,3 +132,38 @@ class Data(PhytestObject, DataFrame):
                 f"The row(s) '{not_allowed}' of the column '{column}' are not in the list of allowed values '{values}'."
             )
         assert_or_warn(len(not_allowed) == 0, warning, summary, message)
+
+    def assert_range(
+        self,
+        column: str,
+        *,
+        min: Union[int, float] = None,
+        max: Union[int, float] = None,
+        warning: bool = False,
+    ) -> None:
+        """
+        Asserts that all values of the specified column are in the specified range.
+
+        Args:
+            column (str, required): The column to check.
+            min (Union[int, float]): The minimum value of the range.
+            max (Union[int, float]): The maximum value of the range.
+            warning (bool): If True, raise a warning instead of an exception. Defaults to False.
+                This flag can be set by running this method with the prefix `warn_` instead of `assert_`.
+        """
+        column_values = self[column].values
+        summary = f"The values of column '{column}' are '{column_values}'."
+        if min is not None:
+            assert_or_warn(
+                min <= column_values.min(),
+                warning,
+                summary,
+                f"The minimum value of column '{column}' is '{column_values.min()}', which is less than '{min}'.",
+            )
+        if max is not None:
+            assert_or_warn(
+                max >= column_values.max(),
+                warning,
+                summary,
+                f"The maximum value of column '{column}' is '{column_values.max()}', which is greater than '{max}'.",
+            )

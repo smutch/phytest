@@ -92,3 +92,20 @@ def test_assert_data_allowed_values():
         ),
     ):
         data.assert_values('name', ['Sequence_A', 'Sequence_B', 'Sequence_C'])
+
+
+def test_assert_range():
+    data_path = 'examples/data/example.csv'
+    data = Data.read(data_path, 'csv')
+    data['value'] = [1, 2, 3, 4]
+    data.assert_range('value', min=1, max=5)
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape("The maximum value of column 'value' is '4', which is greater than '3'."),
+    ):
+        data.assert_range('value', max=3)
+    with pytest.raises(
+        PhytestAssertion,
+        match=re.escape("The minimum value of column 'value' is '1', which is less than '2'."),
+    ):
+        data.assert_range('value', min=2)
