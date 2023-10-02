@@ -71,7 +71,7 @@ def test_cli_parallel(request: pytest.FixtureRequest):
             "2",
         ],
     )
-    assert "gw1" in result.stdout
+    assert "2 workers" in result.stdout
 
 
 def test_cli_report(request: pytest.FixtureRequest):
