@@ -32,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> phytest
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            phytest
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -78,8 +82,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Writing Tests</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Writing Tests</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/phytest-devs/phytest/blob/main/docs/testFiles.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -173,16 +177,16 @@ ATGAGA--CCCGATAGCGAGCTAGCGATCGCAGCGACTCAGCAGCTACAGCGCAGAGGAGAGAGAGGCCCCTATTTACTA
 ATGAGATCCCCGATAGCGAGCTAGCGATNNNNNNNNNNNNNNNNNTACAGCGCAGAGGAGAGAGAGGCCCCTATTTACTAGAGCTCCAGATATAGNNTAG
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ phytest test.py --sequence sequences.fasta
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>phytest<span class="w"> </span>test.py<span class="w"> </span>--sequence<span class="w"> </span>sequences.fasta
 
-Test session starts <span class="o">(</span>platform: darwin, Python <span class="m">3</span>.9.12, pytest <span class="m">7</span>.1.1, pytest-sugar <span class="m">0</span>.9.4<span class="o">)</span>
-rootdir: /Users/wytamma/programming/phytest, configfile: pyproject.toml
-plugins: sugar-0.9.4, html-3.1.1, cov-3.0.0
-collecting ...
-test.py ✓✓✓✓                                                            <span class="m">100</span>% ██████████
+Test<span class="w"> </span>session<span class="w"> </span>starts<span class="w"> </span><span class="o">(</span>platform:<span class="w"> </span>darwin,<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.9.12,<span class="w"> </span>pytest<span class="w"> </span><span class="m">7</span>.1.1,<span class="w"> </span>pytest-sugar<span class="w"> </span><span class="m">0</span>.9.4<span class="o">)</span>
+rootdir:<span class="w"> </span>/Users/wytamma/programming/phytest,<span class="w"> </span>configfile:<span class="w"> </span>pyproject.toml
+plugins:<span class="w"> </span>sugar-0.9.4,<span class="w"> </span>html-3.1.1,<span class="w"> </span>cov-3.0.0
+collecting<span class="w"> </span>...
+test.py<span class="w"> </span>✓✓✓✓<span class="w">                                                            </span><span class="m">100</span>%<span class="w"> </span>██████████
 
-Results <span class="o">(</span><span class="m">0</span>.03s<span class="o">)</span>:
-    <span class="m">4</span> passed
+Results<span class="w"> </span><span class="o">(</span><span class="m">0</span>.03s<span class="o">)</span>:
+<span class="w">    </span><span class="m">4</span><span class="w"> </span>passed
 </pre></div>
 </div>
 <p>Alternative file formats can be specified using the <code class="code docutils literal notranslate"><span class="pre">--sequence-format</span></code> flag.</p>
@@ -199,16 +203,16 @@ Results <span class="o">(</span><span class="m">0</span>.03s<span class="o">)</s
 <p>Tests using the alignment file will be run once i.e. you will have access to the entire alignment during the test.
 Alignments are also passed to Phytest using the <code class="code docutils literal notranslate"><span class="pre">--sequence</span></code> flag however they are required to be valid
 alignments e.g. all sequence must be the same length.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest test.py --sequence sequences.fasta
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest<span class="w"> </span>test.py<span class="w"> </span>--sequence<span class="w"> </span>sequences.fasta
 
-Test session starts <span class="o">(</span>platform: darwin, Python <span class="m">3</span>.9.12, pytest <span class="m">7</span>.1.1, pytest-sugar <span class="m">0</span>.9.4<span class="o">)</span>
-rootdir: /Users/wytamma/programming/phytest, configfile: pyproject.toml
-plugins: sugar-0.9.4, html-3.1.1, cov-3.0.0
-collecting ...
-test.py ✓                                                               <span class="m">100</span>% ██████████
+Test<span class="w"> </span>session<span class="w"> </span>starts<span class="w"> </span><span class="o">(</span>platform:<span class="w"> </span>darwin,<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.9.12,<span class="w"> </span>pytest<span class="w"> </span><span class="m">7</span>.1.1,<span class="w"> </span>pytest-sugar<span class="w"> </span><span class="m">0</span>.9.4<span class="o">)</span>
+rootdir:<span class="w"> </span>/Users/wytamma/programming/phytest,<span class="w"> </span>configfile:<span class="w"> </span>pyproject.toml
+plugins:<span class="w"> </span>sugar-0.9.4,<span class="w"> </span>html-3.1.1,<span class="w"> </span>cov-3.0.0
+collecting<span class="w"> </span>...
+test.py<span class="w"> </span>✓<span class="w">                                                               </span><span class="m">100</span>%<span class="w"> </span>██████████
 
-Results <span class="o">(</span><span class="m">0</span>.02s<span class="o">)</span>:
-    <span class="m">1</span> passed
+Results<span class="w"> </span><span class="o">(</span><span class="m">0</span>.02s<span class="o">)</span>:
+<span class="w">    </span><span class="m">1</span><span class="w"> </span>passed
 </pre></div>
 </div>
 <p>Alternative file formats can be specified using the <code class="code docutils literal notranslate"><span class="pre">--sequence-format</span></code> flag.</p>
@@ -227,16 +231,16 @@ Results <span class="o">(</span><span class="m">0</span>.02s<span class="o">)</s
 (Sequence_A:1,Sequence_B:0.3,(Sequence_C:0.3,Sequence_D:0.4):0.5);
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest test.py --tree tree.newick
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest<span class="w"> </span>test.py<span class="w"> </span>--tree<span class="w"> </span>tree.newick
 
-Test session starts <span class="o">(</span>platform: darwin, Python <span class="m">3</span>.9.12, pytest <span class="m">7</span>.1.1, pytest-sugar <span class="m">0</span>.9.4<span class="o">)</span>
-rootdir: /Users/wytamma/programming/phytest, configfile: pyproject.toml
-plugins: sugar-0.9.4, html-3.1.1, cov-3.0.0
-collecting ...
-test.py ✓✓                                                              <span class="m">100</span>% ██████████
+Test<span class="w"> </span>session<span class="w"> </span>starts<span class="w"> </span><span class="o">(</span>platform:<span class="w"> </span>darwin,<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.9.12,<span class="w"> </span>pytest<span class="w"> </span><span class="m">7</span>.1.1,<span class="w"> </span>pytest-sugar<span class="w"> </span><span class="m">0</span>.9.4<span class="o">)</span>
+rootdir:<span class="w"> </span>/Users/wytamma/programming/phytest,<span class="w"> </span>configfile:<span class="w"> </span>pyproject.toml
+plugins:<span class="w"> </span>sugar-0.9.4,<span class="w"> </span>html-3.1.1,<span class="w"> </span>cov-3.0.0
+collecting<span class="w"> </span>...
+test.py<span class="w"> </span>✓✓<span class="w">                                                              </span><span class="m">100</span>%<span class="w"> </span>██████████
 
-Results <span class="o">(</span><span class="m">0</span>.02s<span class="o">)</span>:
-    <span class="m">2</span> passed
+Results<span class="w"> </span><span class="o">(</span><span class="m">0</span>.02s<span class="o">)</span>:
+<span class="w">    </span><span class="m">2</span><span class="w"> </span>passed
 </pre></div>
 </div>
 <p>Alternative file formats can be specified using the <code class="code docutils literal notranslate"><span class="pre">--tree-format</span></code> flag.</p>
@@ -251,16 +255,16 @@ Results <span class="o">(</span><span class="m">0</span>.02s<span class="o">)</s
 </pre></div>
 </div>
 <p>Tests using the data file will be run once. Data files are passed to Phytest using the <code class="code docutils literal notranslate"><span class="pre">--data</span></code> flag.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest test.py --data metadata.csv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest<span class="w"> </span>test.py<span class="w"> </span>--data<span class="w"> </span>metadata.csv
 
-Test session starts <span class="o">(</span>platform: darwin, Python <span class="m">3</span>.9.12, pytest <span class="m">7</span>.1.1, pytest-sugar <span class="m">0</span>.9.4<span class="o">)</span>
-rootdir: /Users/wytamma/programming/phytest, configfile: pyproject.toml
-plugins: sugar-0.9.4, html-3.1.1, cov-3.0.0
-collecting ...
-test.py ✓                                                               <span class="m">100</span>% ██████████
+Test<span class="w"> </span>session<span class="w"> </span>starts<span class="w"> </span><span class="o">(</span>platform:<span class="w"> </span>darwin,<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.9.12,<span class="w"> </span>pytest<span class="w"> </span><span class="m">7</span>.1.1,<span class="w"> </span>pytest-sugar<span class="w"> </span><span class="m">0</span>.9.4<span class="o">)</span>
+rootdir:<span class="w"> </span>/Users/wytamma/programming/phytest,<span class="w"> </span>configfile:<span class="w"> </span>pyproject.toml
+plugins:<span class="w"> </span>sugar-0.9.4,<span class="w"> </span>html-3.1.1,<span class="w"> </span>cov-3.0.0
+collecting<span class="w"> </span>...
+test.py<span class="w"> </span>✓<span class="w">                                                               </span><span class="m">100</span>%<span class="w"> </span>██████████
 
-Results <span class="o">(</span><span class="m">0</span>.02s<span class="o">)</span>:
-    <span class="m">1</span> passed
+Results<span class="w"> </span><span class="o">(</span><span class="m">0</span>.02s<span class="o">)</span>:
+<span class="w">    </span><span class="m">1</span><span class="w"> </span>passed
 </pre></div>
 </div>
 <p>Alternative file formats can be specified using the <code class="code docutils literal notranslate"><span class="pre">--data-format</span></code> flag.</p>

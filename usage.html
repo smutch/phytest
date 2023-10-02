@@ -32,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> phytest
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            phytest
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,8 +76,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Running Tests</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Running Tests</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/phytest-devs/phytest/blob/main/docs/usage.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -123,7 +127,7 @@
 </pre></div>
 </div>
 <p>The Phytest CLI requires a path to the file containing user defined tests and has optional flags for specifying sequence/alignment, tree and metadata files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest test.py --sequence sequences.fasta --tree tree.newick --data metadata.csv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest<span class="w"> </span>test.py<span class="w"> </span>--sequence<span class="w"> </span>sequences.fasta<span class="w"> </span>--tree<span class="w"> </span>tree.newick<span class="w"> </span>--data<span class="w"> </span>metadata.csv
 </pre></div>
 </div>
 <p>Alternative file formats can be specified with <code class="code docutils literal notranslate"><span class="pre">--sequence-format</span></code>, <code class="code docutils literal notranslate"><span class="pre">--tree-format</span></code>, <code class="code docutils literal notranslate"><span class="pre">--data-format</span></code> flags.
@@ -145,7 +149,7 @@ Supported formats include those supported by Biopython (sequences and trees) and
 </pre></div>
 </div>
 <p>This test style uses <code class="code docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> python convention to only run the tests when invoked from the command line using the python command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python test.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>test.py
 </pre></div>
 </div>
 <p>The <code class="code docutils literal notranslate"><span class="pre">phytest.main</span></code> function will run the tests and return a exit status (0 ir 1) that is passed to <code class="code docutils literal notranslate"><span class="pre">sys.exit</span></code> to ensure the test exit correctly.</p>
@@ -153,7 +157,7 @@ Supported formats include those supported by Biopython (sequences and trees) and
 <section id="pytest-plugin">
 <h2>Pytest Plugin<a class="headerlink" href="#pytest-plugin" title="Permalink to this headline"></a></h2>
 <p>Phytest can also be used as a Pytest plugin. Simply install Phytest and then run Pytest on the test file with the appropriate flags.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest test.py --sequence sequences.fasta
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>test.py<span class="w"> </span>--sequence<span class="w"> </span>sequences.fasta
 </pre></div>
 </div>
 <div class="admonition note">

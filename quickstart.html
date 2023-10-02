@@ -32,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> phytest
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            phytest
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -75,8 +79,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Quickstart</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quickstart</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/phytest-devs/phytest/blob/main/docs/quickstart.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -115,7 +119,7 @@
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
 <p>Install phytest using pip:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install phytest
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>phytest
 </pre></div>
 </div>
 </section>
@@ -212,7 +216,7 @@ ATGAGATCCCCGATAGCGAGCTAGCGATNNNNNNNNNNNNNNNNNTACAGCGCAGAGGAGAGAGAGGCCCCTATTTACTA
 <section id="running-phytest">
 <h3>Running Phytest<a class="headerlink" href="#running-phytest" title="Permalink to this headline"></a></h3>
 <p>We can then run these tests on our data with <code class="code docutils literal notranslate"><span class="pre">phytest</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest examples/example.py -s examples/data/example.fasta -t examples/data/example.tree
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>phytest<span class="w"> </span>examples/example.py<span class="w"> </span>-s<span class="w"> </span>examples/data/example.fasta<span class="w"> </span>-t<span class="w"> </span>examples/data/example.tree
 </pre></div>
 </div>
 <p>Generate a report by adding <code class="code docutils literal notranslate"><span class="pre">--report</span> <span class="pre">report.html</span></code>.</p>
