@@ -1,10 +1,12 @@
 from pathlib import Path
 
 import pytest
-# from py.xml import html
 
 from .bio import Alignment, Data, Sequence, Tree
 from .main import main as main
+
+# from py.xml import html
+
 
 
 def pytest_addoption(parser):
